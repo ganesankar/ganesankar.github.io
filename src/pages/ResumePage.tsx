@@ -10,6 +10,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { Summary } from "../components/Summary";
 import { Expertise } from "../components/Expertise";
 
+import { Experience } from "../components/Experience";
 export const ResumePage = () => {
   const [list, setList] = useState([]);
 
@@ -43,23 +44,24 @@ export const ResumePage = () => {
         <Col className="pt-3"></Col>
       </Row>
       <Accordion defaultActiveKey="0">
-        {list.map((item, indx) => ( 
+        {list.map((item, indx) => (
           <div key={indx}>
-            <Accordion.Item eventKey={String(indx)} className="my-3"> 
-              <Accordion.Header>
-                
-                 {item.data.tag}
-              </Accordion.Header>
+            <Accordion.Item eventKey={String(indx)} className="my-3">
+              <Accordion.Header>{item.data.tag}</Accordion.Header>
               <Accordion.Body>
-                {(() => { 
+                {(() => {
                   switch (item.data.tag) {
                     case "intro":
                       return <Summary data={item.data} />;
                     case "expertise":
                       return <Expertise data={item.data} />;
-                    case "won":
+                    case "experience":
+                      return <Experience data={item.data} />;
+                    case "education":
                       return <Summary data={item.data} />;
-                    case "lost":
+                    case "awards":
+                      return <Summary data={item.data} />;
+                    case "projects":
                       return <Summary data={item.data} />;
                     default:
                       return null;
