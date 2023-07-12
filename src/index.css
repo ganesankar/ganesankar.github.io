@@ -189,4 +189,10 @@ a.primary.ghost {
 
 .resume .accordion-button{
   text-transform: capitalize;
+  background-color: none !important;
+}
+.resume .accordion-flush .accordion-item .accordion-button,
+.resume  .accordion-flush .accordion-item .accordion-button.collapsed {
+  border-radius: 11px  !important;
+  background-color: none !important;
 }

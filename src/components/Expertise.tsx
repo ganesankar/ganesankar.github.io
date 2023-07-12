@@ -4,8 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export const Expertise = ({ data }) => {
-  console.log(data);
+export const Expertise = ({ data }) => { 
   return (
     <Container fluid>
       <Row>
