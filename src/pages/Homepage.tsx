@@ -127,7 +127,7 @@ export const HomePage = () => {
                             <Row sm={3} className="social">
                               <Col>
                                 <a
-                                  href="GanesanKaruppaiyaCv.pdf"
+                                  href="cv/GanesanKaruppaiyaCv.pdf"
                                   target="_blank"
                                 >
                                   <i className="las la-file-pdf"></i>
@@ -135,7 +135,7 @@ export const HomePage = () => {
                               </Col>{" "}
                               <Col>
                                 <a
-                                  href="GanesanKaruppaiyaCv.docx"
+                                  href="cv/GanesanKaruppaiyaCv.docx"
                                   target="_blank"
                                 >
                                   <i className="las la-file-word"></i>
