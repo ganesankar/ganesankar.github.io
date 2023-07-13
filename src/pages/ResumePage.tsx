@@ -2,16 +2,13 @@
 /// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Accordion from "react-bootstrap/Accordion";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
 import { Summary } from "../components/Summary";
 import { Expertise } from "../components/Expertise";
-
+import { Education } from "../components/Education";
+import { Projects } from "../components/Projects";
 import { Experience } from "../components/Experience";
+import { Awards } from "../components/Awards";
+
 export const ResumePage = () => {
   const [list, setList] = useState([]);
 
@@ -40,13 +37,12 @@ export const ResumePage = () => {
   }, []);
 
   return (
-    <Container className="pt-3 resume">
-      {list.map((item, indx) => (
-        <Card className="mb-3 ResumeTop">
-          <Card.Subtitle className="mb-2 text-muted">
-            {item.data.tag}
-          </Card.Subtitle>
-          <Card.Body>
+    <div className="bg-body-tertiary">
+      <Container className="pt-3 resume">
+        {list.map((item, indx) => (
+          <div className="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 className=" pb-2 mb-2 text-capitalize">{item.data.tag} </h6>
+
             {(() => {
               switch (item.data.tag) {
                 case "intro":
@@ -56,25 +52,18 @@ export const ResumePage = () => {
                 case "experience":
                   return <Experience data={item.data} />;
                 case "education":
-                  return <Summary data={item.data} />;
+                  return <Education data={item.data} />;
                 case "awards":
-                  return <Summary data={item.data} />;
+                  return <Awards data={item.data} />;
                 case "projects":
-                  return <Summary data={item.data} />;
+                  return <Projects data={item.data} />;
                 default:
                   return null;
               }
             })()}
-          </Card.Body>
-        </Card>
-      ))}
-      <Row>
-        <Col className="pt-3">
-          <Card>
-            <Card.Body>This is some text within a card body.</Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+          </div>
+        ))}
+      </Container>
+    </div>
   );
 };

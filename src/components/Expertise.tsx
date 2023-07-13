@@ -8,7 +8,7 @@ export const Expertise = ({ data }) => {
   return (
     <Container fluid>
       <Row>
-        <Col sm={12}>
+        <Col sm={12} className="border-top py-2">
           <ul>
             {data?.content?.length &&
               data.content.map((ite, indx) => (

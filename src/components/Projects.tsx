@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
-import { useAccordionButton } from "react-bootstrap/AccordionButton"; 
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { Heading } from "./Heading";
 
 function CustomToggle({ children, eventKey }) {
@@ -15,7 +15,7 @@ function CustomToggle({ children, eventKey }) {
   return <div onClick={decoratedOnClick}>{children}</div>;
 }
 
-export const Experience = ({ data }) => {
+export const Projects = ({ data }) => {
   console.log(data);
   return (
     <Container fluid>
@@ -29,14 +29,15 @@ export const Experience = ({ data }) => {
               <Accordion.Collapse eventKey={indx.toString()}>
                 <Row>
                   <Col sm={12}>{ite.desc}</Col>
-                  <Col sm={12} className="small ">
-                    <ul className="my-3">
-                      {ite?.content?.length &&
-                        ite.content.map((ite, indx) => <li>{ite.title}; </li>)}
-                    </ul>
+                  <Col sm={12} className="small py-3">
+                    <strong>Tools</strong>
+                    {ite?.content?.length &&
+                      ite.content.map((ite, indx) => (
+                        <span className="badge text-bg-secondary mx-1">{ite} </span>
+                      ))}
                   </Col>{" "}
                 </Row>
-              </Accordion.Collapse> 
+              </Accordion.Collapse>
             </div>
           ))}
       </Accordion>

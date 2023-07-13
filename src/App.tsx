@@ -7,7 +7,7 @@ import { NotFoundPage } from "./pages/Notfoundpage";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
-    <div className="wrapper">
+    <div >
       
       <Routes>
         <Route path="/" element={<HomePage />} />
