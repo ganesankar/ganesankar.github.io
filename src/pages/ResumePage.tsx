@@ -11,6 +11,7 @@ import { Awards } from "../components/Awards";
 
 export const ResumePage = () => {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getData = () => {
     fetch("https://ganesan-cv-cp.netlify.app/.netlify/functions/cv-read-all")
@@ -28,6 +29,7 @@ export const ResumePage = () => {
           array1.includes(item.data.tag)
         );
         setList(filteredArray1);
+        setLoading(false);
         console.log(filteredArray1);
       });
   };
@@ -38,10 +40,21 @@ export const ResumePage = () => {
 
   return (
     <div className="bg-body-tertiary">
+      { loading && (
+        <div className="d-flex justify-content-between" style={{ height: "100vh", width: "100vw" }}>
+          <div className="p-2"></div>
+          <div className="d-flex align-self-center justify-content-center">Loading</div>
+          <div className="p-2"></div>
+        </div>
+      )}
       <Container className="pt-3 resume">
         {list.map((item, indx) => (
           <div className="my-3 p-3 bg-body rounded shadow-sm">
-            {item.data.tag !== "intro" && <strong className="d-block pb-2 mb-2 text-capitalize strong">{item.data.tag} </strong>}
+            {item.data.tag !== "intro" && (
+              <strong className="d-block pb-2 mb-2 text-capitalize strong">
+                {item.data.tag}{" "}
+              </strong>
+            )}
 
             {(() => {
               switch (item.data.tag) {

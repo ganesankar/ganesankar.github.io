@@ -17,6 +17,7 @@ export const Summary = ({ data }) => {
                 className="img-thumbnail"
                 variant="top"
                 src="https://avatars.githubusercontent.com/u/56182707"
+                width="150"
               />
             </div>
             <div class="flex-grow-1 ms-3">
