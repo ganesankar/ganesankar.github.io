@@ -32,7 +32,7 @@ export const Projects = ({ data }) => {
                     <strong>Tools</strong>
                     {ite?.content?.length &&
                       ite.content.map((ite, indx) => (
-                        <span className="badge text-bg-secondary mx-1">{ite} </span>
+                        <span className="badge text-bg-light mx-1">{ite} </span>
                       ))}
                   </Col>{" "}
                 </Row>
