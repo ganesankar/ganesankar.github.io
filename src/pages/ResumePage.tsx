@@ -6,7 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
-
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import { Summary } from "../components/Summary";
 import { Expertise } from "../components/Expertise";
 
@@ -39,39 +40,34 @@ export const ResumePage = () => {
   }, []);
 
   return (
-    <Container className="pb-3 resume">
-      <Row>
-        <Col className="pt-3"></Col>
-      </Row>
-      <Accordion defaultActiveKey="0">
-        {list.map((item, indx) => (
-          <div key={indx}>
-            <Accordion.Item eventKey={String(indx)} className="my-3">
-              <Accordion.Header>{item.data.tag}</Accordion.Header>
-              <Accordion.Body>
-                {(() => {
-                  switch (item.data.tag) {
-                    case "intro":
-                      return <Summary data={item.data} />;
-                    case "expertise":
-                      return <Expertise data={item.data} />;
-                    case "experience":
-                      return <Experience data={item.data} />;
-                    case "education":
-                      return <Summary data={item.data} />;
-                    case "awards":
-                      return <Summary data={item.data} />;
-                    case "projects":
-                      return <Summary data={item.data} />;
-                    default:
-                      return null;
-                  }
-                })()}
-              </Accordion.Body>
-            </Accordion.Item>
-          </div>
-        ))}
-      </Accordion>
+    <Container className="pt-3 resume">
+      {list.map((item, indx) => (
+        <Card className="mb-3 ResumeTop">
+          <Card.Subtitle className="mb-2 text-muted">
+            {item.data.tag}
+          </Card.Subtitle>
+          <Card.Body>
+            {(() => {
+              switch (item.data.tag) {
+                case "intro":
+                  return <Summary data={item.data} />;
+                case "expertise":
+                  return <Expertise data={item.data} />;
+                case "experience":
+                  return <Experience data={item.data} />;
+                case "education":
+                  return <Summary data={item.data} />;
+                case "awards":
+                  return <Summary data={item.data} />;
+                case "projects":
+                  return <Summary data={item.data} />;
+                default:
+                  return null;
+              }
+            })()}
+          </Card.Body>
+        </Card>
+      ))}
       <Row>
         <Col className="pt-3">
           <Card>

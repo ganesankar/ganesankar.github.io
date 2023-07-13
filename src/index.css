@@ -76,13 +76,37 @@ label {
 }
 
 .card {
+  background-color:transparent !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  /*backdrop-filter: blur(15px);*/
+  border:  1px transparent !important;
+}
+.card .card-body{
   background-color: rgba(255, 255, 255, 0.4) !important;
   border-radius: 20px !important;
   box-shadow: 0px 0 31px 0px rgb(0 0 0 / 10%) !important;
   /*backdrop-filter: blur(15px);*/
   border: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
+.card.ResumeTop .card-body {
+  border-radius: 0 20px 20px 20px !important;
+  border-top: none !important;
+}
 
+.card .card-subtitle{
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  border-radius: 20px 20px 0 0 !important;
+  box-shadow: 0px 0 31px 0px rgb(0 0 0 / 10%) !important; 
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  margin: 0px !important;
+  text-transform: capitalize !important;
+  padding: 10px 10px 10px 25px; 
+  width: 222px;
+  color: #fff;
+  color: #000 !important; 
+  border-bottom: none !important;
+}
 
 .card-container {
   padding: 30px;
@@ -149,6 +173,7 @@ a.primary.ghost {
     margin: 10px;
   }
 }
+
 .index .accordion-item,
 .index .accordion-item,
 .index .accordion {
@@ -161,38 +186,47 @@ a.primary.ghost {
   background-color: #ffffff3d !important;
   ;
 }
-.index .accordion-button:focus { 
-    border-color:none !important ;
-    box-shadow:none !important ;
+
+.index .accordion-button:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+}
+.homeAcc {
+  padding-top: 25px;
+  margin: 0 -17px;
 }
 .resume .accordion-item,
 .resume .accordion-item {
   background-color: rgba(255, 255, 255, 0.4) !important;
-  border-radius: 11px  !important;
+  border-radius: 11px !important;
   box-shadow: 0px 0 31px 0px rgb(0 0 0 / 10%) !important;
-  
+
 }
+
 .resume .accordion {
-  background: none !important; 
+  background: none !important;
   ;
 }
 
 .resume .accordion-button:not(.collapsed) {
   background-color: #ffffff3d !important;
-  border-radius: 11px  !important;
+  border-radius: 11px !important;
   ;
 }
-.resume .accordion-button:focus { 
-    border-color:none !important ;
-    box-shadow:none !important ;
+
+.resume .accordion-button:focus {
+  border-color: none !important;
+  box-shadow: none !important;
 }
 
-.resume .accordion-button{
+.resume .accordion-button {
   text-transform: capitalize;
   background-color: none !important;
 }
+
 .resume .accordion-flush .accordion-item .accordion-button,
-.resume  .accordion-flush .accordion-item .accordion-button.collapsed {
-  border-radius: 11px  !important;
+.resume .accordion-flush .accordion-item .accordion-button.collapsed {
+  border-radius: 11px !important;
   background-color: none !important;
 }
+
