@@ -41,7 +41,7 @@ export const ResumePage = () => {
       <Container className="pt-3 resume">
         {list.map((item, indx) => (
           <div className="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 className=" pb-2 mb-2 text-capitalize">{item.data.tag} </h6>
+            {item.data.tag !== "intro" && <strong className="d-block pb-2 mb-2 text-capitalize strong">{item.data.tag} </strong>}
 
             {(() => {
               switch (item.data.tag) {

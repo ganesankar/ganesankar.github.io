@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -126,7 +127,7 @@ export const HomePage = () => {
                             <Row sm={3} className="social">
                               <Col>
                                 <a
-                                  href="GanesanKaruppaiyaCv.pdf"
+                                  href="https://1drv.ms/b/s!AvjS861mNgYugbV7qimm6MeTwfXWFA?e=Ynl1UA"
                                   target="_blank"
                                 >
                                   <i className="las la-file-pdf"></i>
@@ -134,7 +135,7 @@ export const HomePage = () => {
                               </Col>{" "}
                               <Col>
                                 <a
-                                  href="GanesanKaruppaiyaCv.docx"
+                                  href="https://1drv.ms/w/s!AvjS861mNgYugbYiR0YamCJY2afJ0Q?e=KSb9tt"
                                   target="_blank"
                                 >
                                   <i className="las la-file-word"></i>

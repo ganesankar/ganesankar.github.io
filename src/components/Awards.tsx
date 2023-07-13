@@ -5,7 +5,6 @@ import Accordion from "react-bootstrap/Accordion";
 import { Heading } from "./Heading";
 
 export const Awards = ({ data }) => {
-  console.log(data);
   return (
     <Container fluid>
       <Accordion defaultActiveKey="0">

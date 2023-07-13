@@ -16,7 +16,6 @@ function CustomToggle({ children, eventKey }) {
 }
 
 export const Experience = ({ data }) => {
-  console.log(data);
   return (
     <Container fluid>
       <Accordion defaultActiveKey="0">
