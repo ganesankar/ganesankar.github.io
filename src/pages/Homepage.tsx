@@ -106,16 +106,18 @@ export const HomePage = () => {
                       <i className="las la-phone"></i> Call
                     </a>
                     <div className="homeAcc">
-                      <Accordion defaultActiveKey={["0"]} alwaysOpen flush>
+                    <div className="social">
+                              <Row sm={5}> {listItems}</Row>{" "}
+                            </div>
+                    {/**
+                     *   <Accordion defaultActiveKey={["0"]} alwaysOpen flush>
                         <Accordion.Item eventKey="0">
                           <Accordion.Header>
                             {" "}
                             <i className="las la-globe"></i> Social{" "}
                           </Accordion.Header>
                           <Accordion.Body>
-                            <div className="social">
-                              <Row sm={5}> {listItems}</Row>{" "}
-                            </div>
+                          
                           </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">
@@ -150,6 +152,7 @@ export const HomePage = () => {
                           </Accordion.Body>
                         </Accordion.Item>
                       </Accordion>
+                     */}
                     </div>
                   </Card.Body>
                 </Card>
