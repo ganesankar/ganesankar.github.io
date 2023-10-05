@@ -14,8 +14,8 @@ export const Expertise = ({ data }) => {
               data.content.map((ite, indx) => (
                 <li>
                   <b>{ite.title} : </b>{" "}
-                  {ite?.content?.length &&
-                    ite.content.map((ite, indx) => <span>{ite.title}; </span>)}
+                  {ite?.list?.length &&
+                    ite.list.map((ite, indx) => <span  key={`expertise-${indx}`}>{ite}; </span>)}
                 </li>
               ))}
           </ul>

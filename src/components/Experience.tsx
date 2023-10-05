@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
-import { useAccordionButton } from "react-bootstrap/AccordionButton"; 
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import { Heading } from "./Heading";
 
 function CustomToggle({ children, eventKey }) {
@@ -21,7 +21,7 @@ export const Experience = ({ data }) => {
       <Accordion defaultActiveKey="0">
         {data?.content?.length &&
           data.content.map((ite, indx) => (
-            <div className="d-block">
+            <div className="d-block" key={`Experience-${indx}`}>
               <CustomToggle eventKey={indx.toString()}>
                 <Heading item={ite} />
               </CustomToggle>
@@ -30,12 +30,12 @@ export const Experience = ({ data }) => {
                   <Col sm={12}>{ite.desc}</Col>
                   <Col sm={12} className="small ">
                     <ul className="my-3">
-                      {ite?.content?.length &&
-                        ite.content.map((ite, indx) => <li>{ite.title}; </li>)}
+                      {ite?.list?.length &&
+                        ite.list.map((ite, iy) => <li key={`Experience-item-${iy}`}>{ite}; </li>)}
                     </ul>
-                  </Col>{" "}
+                  </Col>
                 </Row>
-              </Accordion.Collapse> 
+              </Accordion.Collapse>
             </div>
           ))}
       </Accordion>

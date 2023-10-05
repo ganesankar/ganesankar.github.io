@@ -10,7 +10,7 @@ export const Education = ({ data }) => {
       <Accordion defaultActiveKey="0">
         {data?.content?.length &&
           data.content.map((ite, indx) => (
-            <div className="d-block">
+            <div className="d-block" key={`Education-${indx}`}>
               <Heading item={ite} />
             </div>
           ))}

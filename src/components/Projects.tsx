@@ -21,7 +21,7 @@ export const Projects = ({ data }) => {
       <Accordion defaultActiveKey="0">
         {data?.content?.length &&
           data.content.map((ite, indx) => (
-            <div className="d-block">
+            <div className="d-block"  key={`project-${indx}`}>
               <CustomToggle eventKey={indx.toString()}>
                 <Heading item={ite} />
               </CustomToggle>
@@ -30,9 +30,9 @@ export const Projects = ({ data }) => {
                   <Col sm={12}>{ite.desc}</Col>
                   <Col sm={12} className="small py-3">
                     <strong>Tools</strong>
-                    {ite?.content?.length &&
-                      ite.content.map((ite, indx) => (
-                        <span className="badge text-bg-light mx-1">{ite} </span>
+                    {ite?.list?.length &&
+                      ite.list.map((ite, indx) => (
+                        <span  key={`project-item-${indx}`} className="badge text-bg-light mx-1">{ite} </span>
                       ))}
                   </Col>{" "}
                 </Row>

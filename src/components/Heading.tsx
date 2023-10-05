@@ -10,21 +10,20 @@ export const Heading = ({ item }) => {
       <Col sm={12} md={6}>
         <h6 className="text-primary">{item.title} </h6>
         <small>
-          {item.company} {item.institute}
+          {item.company} {item.subtitle}
         </small>
       </Col>
       <Col sm={12} md={6} className="text-end">
-        <h6 className="text-primary">
-          {item.startdate !== "current"
-            ? moment(item.startdate).format("MMM, YYYY")
-            : item.startdate}{" "}
-          {item.enddate ? "-" : ""}
-          {item.enddate && item.enddate !== "current"
-            ? moment(item.enddate).format("MMM, YYYY")
-            : item.enddate}{" "}
+        <h6 className="text-primary">  
+          {item.startDate !== "current"
+            ?  moment(item.startDate, 'DD-MM-YYYY').format("MMM, YYYY")
+            : item.startDate}
+          {item.endDate ? " - " : ""}
+          {item.endDate && item.endDate !== "P"
+            ? moment(item.endDate, 'DD-MM-YYYY').format("MMM, YYYY")
+            : "Present"}
         </h6>
         <small className="text-muted">{item.location}</small>
-        <small className="text-muted">{item.subtitle} </small>
       </Col>
     </Row>
   );
