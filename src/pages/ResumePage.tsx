@@ -10,6 +10,7 @@ import { Projects } from "../components/Projects";
 import { Experience } from "../components/Experience";
 import { Awards } from "../components/Awards";
 
+
 export const ResumePage = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,18 @@ export const ResumePage = () => {
       .then((response) => response.json())
       .then((data) => {
         const filteredArray1 = data.sort((a, b) => a.orderBy - b.orderBy);
-
+        /*filteredArray1.forEach((item) => {
+          if (item.content[0].startDate &&  item.title === "Projects") {
+            const  content = item.content.sort(function (a, b) {
+              console.log(a.title);
+              a.Start = new moment(a.startDate, "DD-MM-YYYY").format('X');
+              b.Start = new moment(b.startDate, "DD-MM-YYYY").format('X');
+              console.log(a.Start, b.Start);
+              return a.Start - b.Start;
+            });
+            item.content = content
+          }
+        });*/
         setList(filteredArray1);
         setLoading(false);
       });
