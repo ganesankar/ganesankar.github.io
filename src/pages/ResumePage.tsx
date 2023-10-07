@@ -55,7 +55,9 @@ export const ResumePage = () => {
         >
           <div className="p-2"></div>
           <div className="d-flex align-self-center justify-content-center">
-            Loading
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
           <div className="p-2"></div>
         </div>
