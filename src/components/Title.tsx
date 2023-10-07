@@ -8,7 +8,7 @@ export const Title = ({ data }) => {
   return (
     <Container fluid>
       <Row>
-        <Col sm={12}  className="my-3 p-3 bg-body rounded shadow-sm">
+        <Col sm={12} className="my-3 p-3 bg-body rounded shadow-sm">
           <div className="d-flex align-items-center">
             <div className="flex-shrink-0">
               {" "}
@@ -21,23 +21,39 @@ export const Title = ({ data }) => {
             </div>
             <div className="flex-grow-1 ms-3">
               <Container fluid>
-                
-                <Row  >
+                <Row>
                   <Col sm={12} md={6}>
                     <h5 className="d-block pb-2 mb-0 text-capitalize strong">
                       {" "}
-                      <strong> Ganesan Karuppaiya</strong>
+                      <strong> <span className="text-primary ">Ganesan</span> Karuppaiya</strong>
                     </h5>
                     <strong>Technology Lead/ Full Stack Developer</strong>
                     <br />
-                    <small>Chennai IN</small>
+                    <small>Chennai IN</small> <br />
+                    <a
+                      href="https://ganesankar.github.io/cv/GanesanKaruppaiyaCv.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="link-offset-2 link-underline link-underline-opacity-0"
+                    >
+                      {" "}
+                      <i className="las la-download"></i> Download
+                    </a>
                   </Col>
                   <Col sm={12} md={6} className="text-end">
                     <p className="text-right">
-                      <br /> <a href="http://ganesan.dev">www.ganesan.dev</a>
                       <br />{" "}
-                      <a href="mailto:ganesank@live.com">Ganesank@live.com</a>
-                      <br /> <a href="tel:+919943732416">+91 994 373 2416</a>
+                      <a className="link-offset-2 link-underline link-underline-opacity-0" href="http://ganesan.dev">
+                        <i className="las la-globe"></i> www.ganesan.dev
+                      </a>
+                      <br />{" "}
+                      <a className="link-offset-2 link-underline link-underline-opacity-0" href="mailto:ganesank@live.com">
+                        <i className="las la-envelope"></i> Ganesank@live.com
+                      </a>
+                      <br />{" "}
+                      <a href="tel:+919943732416" className="link-offset-2 link-underline link-underline-opacity-0">
+                        <i className="las la-phone"></i> +91 994 373 2416
+                      </a>
                     </p>
                   </Col>
                 </Row>

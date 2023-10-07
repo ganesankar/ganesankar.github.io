@@ -10,7 +10,6 @@ import { Projects } from "../components/Projects";
 import { Experience } from "../components/Experience";
 import { Awards } from "../components/Awards";
 
-
 export const ResumePage = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -69,6 +68,7 @@ export const ResumePage = () => {
               key={`section-${item.title}`}
             >
               <strong className="d-block pb-2 mb-2 text-capitalize strong">
+                {" "}
                 {item.title}{" "}
               </strong>
 
