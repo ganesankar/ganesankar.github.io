@@ -3,6 +3,7 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { LiaGlobeAmericasSolid,LiaDownloadSolid, LiaEnvelopeSolid, LiaPhoneSolid} from "react-icons/lia";
 
 export const Title = ({ data }) => {
   return (
@@ -37,22 +38,22 @@ export const Title = ({ data }) => {
                       className="link-offset-2 link-underline link-underline-opacity-0"
                     >
                       {" "}
-                      <i className="las la-download"></i> Download
+                      <LiaDownloadSolid /> Download
                     </a>
                   </Col>
                   <Col sm={12} md={6} className="text-end">
                     <p className="text-right">
                       <br />{" "}
                       <a className="link-offset-2 link-underline link-underline-opacity-0" href="http://ganesan.dev">
-                        <i className="las la-globe"></i> www.ganesan.dev
+                      <LiaGlobeAmericasSolid /> www.ganesan.dev
                       </a>
                       <br />{" "}
                       <a className="link-offset-2 link-underline link-underline-opacity-0" href="mailto:ganesank@live.com">
-                        <i className="las la-envelope"></i> Ganesank@live.com
+                      <LiaEnvelopeSolid /> Ganesank@live.com
                       </a>
                       <br />{" "}
                       <a href="tel:+919943732416" className="link-offset-2 link-underline link-underline-opacity-0">
-                        <i className="las la-phone"></i> +91 994 373 2416
+                      <LiaPhoneSolid /> +91 994 373 2416
                       </a>
                     </p>
                   </Col>

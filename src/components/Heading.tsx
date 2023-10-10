@@ -7,13 +7,13 @@ import moment from "moment";
 export const Heading = ({ item }) => {
   return (
     <Row className="border-top py-2">
-      <Col sm={12} md={6}>
+      <Col sm={6} md={6}>
         <h6 className="text-primary">{item.title} </h6>
         <small>
           {item.company} {item.subtitle}
         </small>
       </Col>
-      <Col sm={12} md={6} className="text-end">
+      <Col sm={6} md={6} className="text-end">
         <h6 className="text-primary">  
           {item.startDate !== "current"
             ?  moment(item.startDate, 'DD-MM-YYYY').format("MMM, YYYY")

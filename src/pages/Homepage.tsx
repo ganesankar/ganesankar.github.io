@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Stack from "react-bootstrap/Stack";
 import Accordion from "react-bootstrap/Accordion";
 import { Link } from "react-router-dom";
+import { LiaFacebook ,LiaGlobeAmericasSolid, LiaInstagram, LiaLinkedin , LiaSnapchatGhost, LiaWhatsapp ,LiaTwitter, LiaTelegramPlane, LiaGithub, LiaSkype} from "react-icons/lia";
 export const HomePage = () => {
   const numbers = [
     {
@@ -64,6 +65,32 @@ export const HomePage = () => {
     <Col>
       <a href={item.url} target="_blank" title={item.title} rel="noreferrer">
         <i className={item.icon}></i>
+         {(() => {
+          switch (item.title) {
+            case "Website":
+              return <LiaGlobeAmericasSolid />;
+            case "Facebook":
+              return <LiaFacebook />;
+            case "Instagram":
+              return <LiaInstagram />;
+            case "Linkedin":
+              return <LiaLinkedin />;
+            case "SnapChat":
+              return <LiaSnapchatGhost />;
+            case "Whatsapp":
+              return <LiaWhatsapp />;
+            case "Twitter":
+              return <LiaTwitter />;
+            case "Telegram":
+              return <LiaTelegramPlane />;
+            case "Github":
+              return <LiaGithub />;
+            case "skype":
+              return <LiaSkype />;
+            default:
+              return null;
+          }
+        })()}
       </a>
     </Col>
   ));
