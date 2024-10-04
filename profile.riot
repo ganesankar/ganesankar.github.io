@@ -15,11 +15,12 @@
             <div class="" each={ item in state.items } hidden={ item.hidden }>
 
               <a href={item.url} target="_blank" title={item.title} class="text-3xl p-3 tooltip-trigger"> <i class={
-                  item.icon }></i> 
-                  <div class="tooltip-content" >
-               {item.title}
-              </div></a>
-              
+                  item.icon }></i>
+                <div class="tooltip-content absolute hidden bg-slate-500/80 text-white p-3 rounded-lg text-sm">
+                  {item.title}
+                </div>
+              </a>
+
             </div>
           </div>
         </div>
