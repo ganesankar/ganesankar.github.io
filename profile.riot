@@ -1,0 +1,43 @@
+<profile>
+  <div class="wrapper-container w-screen top-0 left-0 min-h-screen">
+    <div class="wrapper-content w-screen top-0 left-0">
+      <div class=" mx-auto h-screen  flex items-center justify-center">
+        <div class="bg-white/40 rounded-lg p-6 w-[400px] ">
+          <div class="text-center border-b   border-black/10  pb-4">
+            <img class="w-64 mx-auto mb-5 rounded-full"
+              src="https://pbs.twimg.com/profile_images/1567036947721498625/VsBNh6ho_400x400.jpg" alt="user" />
+            <h3 class="text-2xl">{ props.title }</h3>
+            <h6 class="text-xl">{ props.location }</h6>
+            <p>{ props.subTitle } </p>
+
+          </div>
+          <div class="flex flex-wrap items-center justify-center pt-5 border-t border-white/40 pb-4">
+            <div class="" each={ item in state.items } hidden={ item.hidden }>
+
+              <a href={item.url} target="_blank" title={item.title} class="text-3xl p-3 tooltip-trigger"> <i class={
+                  item.icon }></i> 
+                  <div class="tooltip-content" >
+               {item.title}
+              </div></a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  </div>
+  <script>
+    export default {
+      onBeforeMount(props, state) {
+        // initial state
+        this.state = {
+          items: props.items,
+          text: ''
+        }
+      },
+    }
+  </script>
+</profile>

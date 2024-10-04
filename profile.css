@@ -1,0 +1,38 @@
+.wrapper-container,
+.wrapper-content {
+  -webkit-animation: gradient 16s linear infinite;
+  animation: gradient 16s linear infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  background-size: 600% 100%;
+}
+.wrapper-container {
+  background: linear-gradient(45deg, #F17C58, #E94584, #24AADB, #27DBB1, #FFDC18, #FF3706);
+  background-size: 600% 100%;
+  animation: gradient 16s linear infinite;
+  animation-direction: alternate;
+  z-index: 0
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%
+  }
+
+  100% {
+    background-position: 100%
+  }
+}
+
+.tooltip-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.tooltip-trigger:hover .tooltip-content {
+  display: block;
+}

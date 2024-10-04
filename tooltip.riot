@@ -1,0 +1,36 @@
+
+<tooltip>
+  <div class="tooltip-content" if={ visible }>
+    <slot></slot>
+  </div>
+  <div class="tooltip-trigger" onmouseover={ show } onmouseout={ hide }>
+    <slot name="trigger"></slot>
+  </div>
+</tooltip>
+
+<style>
+  .tooltip-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .tooltip-trigger:hover + .tooltip-content {
+    display: block;
+  }
+</style>
+
+<script>
+  export default {
+    visible: false,
+    show() {
+      this.visible = true;
+    },
+    hide() {
+      this.visible = false;
+    }
+  };
+</script>
