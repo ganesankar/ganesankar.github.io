@@ -14,8 +14,8 @@
           <div class="flex flex-wrap items-center justify-center pt-5 border-t border-white/40 pb-4">
             <div class="" each={ item in state.items } hidden={ item.hidden }>
 
-              <a href={item.url} target="_blank" title={item.title} class="text-3xl p-3 tooltip-trigger"> <i class={
-                  item.icon }></i>
+              <a href={item.url} target="_blank" title={item.title} class="text-3xl p-3 tooltip-trigger opacity-60"> <i class={
+                  `${item.icon }`}></i>
                 <div class="tooltip-content absolute hidden bg-slate-500/80 text-white p-3 rounded-lg text-sm">
                   {item.title}
                 </div>
