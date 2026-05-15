@@ -1,31 +1,1320 @@
-.wrapper-container,
-.wrapper-content {
-  -webkit-animation: gradient 16s linear infinite;
-  animation: gradient 16s linear infinite;
-  -webkit-animation-direction: alternate;
-  animation-direction: alternate;
-  background-size: 600% 100%;
+/* ==========================================================================
+   Profile page - OS time machine
+   <body data-os="mac|windows|android|linux" data-era="0..7">
+
+   The OS is detected once at boot (no UI to switch). Mac/Windows/Android
+   each unlock an 8-stop slider that morphs the card through that OS's
+   design history. Linux gets a single Ubuntu look with no slider.
+
+   All theming is plain CSS variables. Same markup for every theme.
+   Mobile-first.
+   ========================================================================== */
+
+[x-cloak] { display: none !important; }
+
+/* =========================================================================
+   MAC - macOS eras (default)
+   Cheetah → Tiger → Leopard → Snow Leopard → Yosemite → Big Sur → Sonoma → Tahoe
+   ========================================================================= */
+
+/* Era 7: macOS 26 Tahoe (Liquid Glass) - default */
+:root,
+[data-os="mac"],
+[data-os="mac"][data-era="7"] {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Inter", system-ui, sans-serif;
+  --bg:
+    radial-gradient(1200px 800px at 18% 12%, #ff8fb1 0%, transparent 55%),
+    radial-gradient(1000px 700px at 82% 18%, #7ab6ff 0%, transparent 55%),
+    radial-gradient(1100px 800px at 50% 100%, #b48bff 0%, transparent 55%),
+    linear-gradient(180deg, #ffe8f0 0%, #e0eaff 50%, #f0e0ff 100%);
+  --card-bg: rgba(255, 255, 255, 0.18);
+  --card-border: 1px solid rgba(255, 255, 255, 0.55);
+  --card-radius: 28px;
+  --card-shadow:
+    0 10px 40px rgba(20, 20, 60, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --card-blur: 30px;
+  --card-saturate: 180%;
+  --divider: 1px solid rgba(26, 26, 46, 0.12);
+  --text: #1a1a2e;
+  --text-muted: rgba(26, 26, 46, 0.65);
+  --name-weight: 600;
+  --name-size: 22px;
+  --letter-spacing: -0.01em;
+  --avatar-radius: 50%;
+  --avatar-ring: 4px solid rgba(255, 255, 255, 0.6);
+  --avatar-shadow: 0 8px 24px rgba(20, 20, 60, 0.18);
+  --link-bg: rgba(255, 255, 255, 0.42);
+  --link-color: #1a1a2e;
+  --link-radius: 18px;
+  --link-shadow:
+    0 4px 16px rgba(20, 20, 60, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --link-hover-bg: rgba(255, 255, 255, 0.7);
+  --link-border: 1px solid rgba(255, 255, 255, 0.5);
 }
-.wrapper-container {
-  background: linear-gradient(45deg, #F17C58, #E94584, #24AADB, #27DBB1, #FFDC18, #FF3706);
-  background-size: 600% 100%;
-  animation: gradient 16s linear infinite;
-  animation-direction: alternate;
-  z-index: 0
+
+[data-os="mac"][data-era="6"] { /* Sonoma */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --bg: linear-gradient(180deg, #1a2540 0%, #2d4a6f 35%, #c66437 78%, #f0a653 100%);
+  --card-bg: rgba(20, 28, 48, 0.45);
+  --card-border: 1px solid rgba(255, 255, 255, 0.18);
+  --card-radius: 22px;
+  --card-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --card-blur: 24px;
+  --card-saturate: 160%;
+  --divider: 1px solid rgba(255, 255, 255, 0.14);
+  --text: #f7f9ff;
+  --text-muted: rgba(247, 249, 255, 0.7);
+  --avatar-ring: 3px solid rgba(255, 255, 255, 0.4);
+  --avatar-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --link-bg: rgba(255, 255, 255, 0.10);
+  --link-color: #f7f9ff;
+  --link-radius: 14px;
+  --link-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --link-hover-bg: rgba(255, 255, 255, 0.22);
+  --link-border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0%
-  }
-
-  100% {
-    background-position: 100%
-  }
+[data-os="mac"][data-era="5"] { /* Big Sur */
+  --bg: linear-gradient(180deg, #1c1f80 0%, #4f3a91 32%, #c66e92 70%, #f7b15c 100%);
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-border: 1px solid rgba(255, 255, 255, 0.95);
+  --card-radius: 22px;
+  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  --card-blur: 8px;
+  --card-saturate: 120%;
+  --divider: 1px solid rgba(0, 0, 0, 0.08);
+  --text: #1d1d1f;
+  --text-muted: rgba(29, 29, 31, 0.6);
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  --link-bg: rgba(0, 0, 0, 0.04);
+  --link-color: #1d1d1f;
+  --link-radius: 12px;
+  --link-shadow: none;
+  --link-hover-bg: rgba(0, 122, 255, 0.12);
+  --link-border: 1px solid transparent;
 }
 
+[data-os="mac"][data-era="4"] { /* Yosemite */
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --bg: linear-gradient(180deg, #1f2c4a 0%, #3a527a 50%, #6b8aae 100%);
+  --card-bg: rgba(245, 245, 247, 0.97);
+  --card-border: 1px solid rgba(0, 0, 0, 0.08);
+  --card-radius: 8px;
+  --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  --card-blur: 0;
+  --divider: 1px solid rgba(0, 0, 0, 0.08);
+  --text: #1a1a1a;
+  --text-muted: #7a7a7a;
+  --name-weight: 200;
+  --name-size: 26px;
+  --letter-spacing: 0;
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  --link-bg: transparent;
+  --link-color: #007aff;
+  --link-radius: 0;
+  --link-shadow: none;
+  --link-hover-bg: rgba(0, 122, 255, 0.1);
+  --link-border: 1px solid transparent;
+}
 
+[data-os="mac"][data-era="3"] { /* Snow Leopard */
+  --font: "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
+  --bg: radial-gradient(ellipse at top, #2c2554 0%, #150a3a 60%, #050010 100%);
+  --card-bg: linear-gradient(180deg, #fafafa 0%, #e2e2e2 50%, #c8c8c8 100%);
+  --card-border: 1px solid rgba(0, 0, 0, 0.5);
+  --card-radius: 8px;
+  --card-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 #ffffff;
+  --card-blur: 0;
+  --divider: 1px solid rgba(0, 0, 0, 0.18);
+  --text: #2a2a2a;
+  --text-muted: #6a6a6a;
+  --name-weight: 700;
+  --avatar-ring: 4px solid #ffffff;
+  --avatar-shadow: 0 6px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --link-bg: linear-gradient(180deg, #fefefe 0%, #c0c0c0 100%);
+  --link-color: #2a2a2a;
+  --link-radius: 50%;
+  --link-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.12);
+  --link-hover-bg: linear-gradient(180deg, #ffffff 0%, #d0d0d0 100%);
+  --link-border: 1px solid rgba(0, 0, 0, 0.35);
+}
 
-.tooltip-trigger:hover .tooltip-content {
+[data-os="mac"][data-era="2"] { /* Leopard */
+  --font: "Lucida Grande", "Helvetica Neue", sans-serif;
+  --bg: radial-gradient(ellipse at top, #1a2a4a 0%, #0a0f25 65%, #000010 100%);
+  --card-bg: linear-gradient(180deg, rgba(45,45,55,0.92) 0%, rgba(20,20,30,0.95) 100%);
+  --card-border: 1px solid rgba(255, 255, 255, 0.18);
+  --card-radius: 14px;
+  --card-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  --card-blur: 0;
+  --divider: 1px solid rgba(255, 255, 255, 0.12);
+  --text: #f0f0f0;
+  --text-muted: #a0a0b0;
+  --name-weight: 700;
+  --avatar-ring: 3px solid rgba(255, 255, 255, 0.4);
+  --avatar-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  --link-bg: linear-gradient(180deg,
+    rgba(255,255,255,0.22) 0%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(0,0,0,0.25) 100%);
+  --link-color: #ffffff;
+  --link-radius: 14px;
+  --link-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 6px rgba(0, 0, 0, 0.5);
+  --link-hover-bg: linear-gradient(180deg,
+    rgba(255,255,255,0.32) 0%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(0,0,0,0.2) 100%);
+  --link-border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+[data-os="mac"][data-era="1"] { /* Tiger - brushed metal */
+  --font: "Lucida Grande", "Helvetica Neue", sans-serif;
+  --bg: linear-gradient(180deg, #c8c8c8 0%, #a8a8a8 100%);
+  --card-bg:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 2px),
+    linear-gradient(180deg, #d8d8d8 0%, #b0b0b0 100%);
+  --card-border: 1px solid #707070;
+  --card-radius: 8px;
+  --card-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), inset 0 1px 0 #ffffff;
+  --card-blur: 0;
+  --divider: 1px solid rgba(0, 0, 0, 0.18);
+  --text: #1a1a1a;
+  --text-muted: #555555;
+  --name-weight: 700;
+  --avatar-radius: 6px;
+  --avatar-ring: 2px solid #707070;
+  --avatar-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --link-bg: linear-gradient(180deg, #f0f0f0 0%, #c0c0c0 100%);
+  --link-color: #1a1a1a;
+  --link-radius: 6px;
+  --link-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.3);
+  --link-hover-bg: linear-gradient(180deg, #f8f8f8 0%, #d0d0d0 100%);
+  --link-border: 1px solid #707070;
+}
+
+[data-os="mac"][data-era="0"] { /* Cheetah - Aqua */
+  --font: "Lucida Grande", "Helvetica Neue", sans-serif;
+  --bg:
+    repeating-linear-gradient(0deg, rgba(180,200,230,0.45) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, #cfd9e6 0%, #aebed4 100%);
+  --card-bg:
+    repeating-linear-gradient(0deg, rgba(120,150,200,0.12) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, #ffffff 0%, #e8eef7 100%);
+  --card-border: 1px solid #6a85a8;
+  --card-radius: 12px;
+  --card-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 #ffffff;
+  --card-blur: 0;
+  --divider: 1px solid rgba(106, 133, 168, 0.35);
+  --text: #1d2840;
+  --text-muted: #5a6680;
+  --name-weight: 700;
+  --avatar-ring: 3px solid #6a85a8;
+  --avatar-shadow: 0 6px 14px rgba(0, 40, 120, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --link-bg: linear-gradient(180deg, #ffffff 0%, #c4d8f0 50%, #80a8d8 100%);
+  --link-color: #0a2a5a;
+  --link-radius: 999px;
+  --link-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 -2px 6px rgba(0, 40, 120, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  --link-hover-bg: linear-gradient(180deg, #ffffff 0%, #d4e4f8 50%, #90b8e8 100%);
+  --link-border: 1px solid #4a6890;
+}
+
+/* =========================================================================
+   WINDOWS - 95 → 98 → XP → Vista → 7 → 8 → 10 → 11
+   ========================================================================= */
+
+/* Era 7: Windows 11 (Mica + rounded) - default */
+[data-os="windows"],
+[data-os="windows"][data-era="7"] {
+  --font: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --bg:
+    radial-gradient(1000px 700px at 30% 30%, #5b8def 0%, transparent 55%),
+    radial-gradient(900px 700px at 80% 70%, #ad6cff 0%, transparent 55%),
+    linear-gradient(180deg, #142a55 0%, #1a3870 50%, #4a3582 100%);
+  --card-bg: rgba(32, 32, 40, 0.62);
+  --card-border: 1px solid rgba(255, 255, 255, 0.12);
+  --card-radius: 8px;
+  --card-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --card-blur: 30px;
+  --card-saturate: 160%;
+  --divider: 1px solid rgba(255, 255, 255, 0.10);
+  --text: #f3f3f3;
+  --text-muted: rgba(243, 243, 243, 0.65);
+  --name-weight: 600;
+  --name-size: 22px;
+  --letter-spacing: -0.01em;
+  --avatar-radius: 50%;
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  --link-bg: rgba(255, 255, 255, 0.06);
+  --link-color: #f3f3f3;
+  --link-radius: 8px;
+  --link-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --link-hover-bg: rgba(0, 120, 215, 0.35);
+  --link-border: 1px solid transparent;
+}
+
+[data-os="windows"][data-era="6"] { /* Windows 10 - Metro refined */
+  --font: "Segoe UI", "Segoe UI Symbol", system-ui, sans-serif;
+  --bg: linear-gradient(135deg, #003a78 0%, #00609a 50%, #008cbf 100%);
+  --card-bg: #1f1f1f;
+  --card-border: 1px solid #0078d7;
+  --card-radius: 0;
+  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --card-blur: 0;
+  --divider: 1px solid rgba(255, 255, 255, 0.10);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --name-weight: 300;
+  --name-size: 24px;
+  --avatar-radius: 0;
+  --avatar-ring: 2px solid #0078d7;
+  --avatar-shadow: none;
+  --link-bg: #2d2d2d;
+  --link-color: #ffffff;
+  --link-radius: 0;
+  --link-shadow: none;
+  --link-hover-bg: #0078d7;
+  --link-border: 1px solid #404040;
+}
+
+[data-os="windows"][data-era="5"] { /* Windows 8 - Metro flat */
+  --font: "Segoe UI", "Segoe UI Light", system-ui, sans-serif;
+  --bg: #00b294;
+  --card-bg: #1ba1e2;
+  --card-border: 0 solid transparent;
+  --card-radius: 0;
+  --card-shadow: 0 0 0 transparent;
+  --card-blur: 0;
+  --divider: 1px solid rgba(255, 255, 255, 0.25);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.8);
+  --name-weight: 200;
+  --name-size: 28px;
+  --letter-spacing: 0;
+  --avatar-radius: 0;
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow: none;
+  --link-bg: #f09609;
+  --link-color: #ffffff;
+  --link-radius: 0;
+  --link-shadow: none;
+  --link-hover-bg: #d83b01;
+  --link-border: 0 solid transparent;
+}
+
+[data-os="windows"][data-era="4"] { /* Windows 7 - Refined Aero */
+  --font: "Segoe UI", system-ui, sans-serif;
+  --bg:
+    radial-gradient(800px 600px at 50% 80%, #2f7eb8 0%, transparent 60%),
+    linear-gradient(180deg, #0b1d3a 0%, #18406b 60%, #2c6da3 100%);
+  --card-bg: rgba(20, 50, 90, 0.55);
+  --card-border: 1px solid rgba(255, 255, 255, 0.45);
+  --card-radius: 8px;
+  --card-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --card-blur: 18px;
+  --card-saturate: 140%;
+  --divider: 1px solid rgba(255, 255, 255, 0.20);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.75);
+  --name-weight: 600;
+  --avatar-ring: 2px solid rgba(255, 255, 255, 0.6);
+  --avatar-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --link-bg: linear-gradient(180deg,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.05) 100%);
+  --link-color: #ffffff;
+  --link-radius: 8px;
+  --link-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.4);
+  --link-hover-bg: linear-gradient(180deg,
+    rgba(255,255,255,0.5) 0%,
+    rgba(255,255,255,0.2) 50%,
+    rgba(255,255,255,0.08) 100%);
+  --link-border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+[data-os="windows"][data-era="3"] { /* Windows Vista - Aero glass */
+  --font: "Segoe UI", system-ui, sans-serif;
+  --bg:
+    radial-gradient(900px 700px at 50% 90%, #43a047 0%, transparent 65%),
+    linear-gradient(180deg, #0a1f2a 0%, #103a3e 50%, #1f5a3e 100%);
+  --card-bg: rgba(15, 35, 50, 0.6);
+  --card-border: 1px solid rgba(255, 255, 255, 0.35);
+  --card-radius: 10px;
+  --card-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --card-blur: 22px;
+  --card-saturate: 140%;
+  --divider: 1px solid rgba(255, 255, 255, 0.18);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --name-weight: 600;
+  --avatar-ring: 2px solid rgba(255, 255, 255, 0.5);
+  --avatar-shadow: 0 6px 14px rgba(0, 0, 0, 0.55);
+  --link-bg: linear-gradient(180deg,
+    rgba(255,255,255,0.30) 0%,
+    rgba(255,255,255,0.08) 100%);
+  --link-color: #ffffff;
+  --link-radius: 10px;
+  --link-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+  --link-hover-bg: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.12) 100%);
+  --link-border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+[data-os="windows"][data-era="2"] { /* Windows XP - Bliss + Luna */
+  --font: "Tahoma", "Segoe UI", system-ui, sans-serif;
+  --bg: linear-gradient(180deg, #4a8bd5 0%, #6db1e3 35%, #8fcd6c 65%, #5b9c45 100%);
+  --card-bg: #ece9d8;
+  --card-border: 1px solid #0050c0;
+  --card-radius: 10px 10px 6px 6px;
+  --card-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.4),
+    0 -22px 0 -1px #2a5fcb inset,
+    0 -22px 0 -2px #4274d3 inset;
+  --card-blur: 0;
+  --divider: 1px solid rgba(0, 0, 80, 0.15);
+  --text: #000000;
+  --text-muted: #444444;
+  --name-weight: 700;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #ffffff;
+  --avatar-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  --link-bg: linear-gradient(180deg, #ffffff 0%, #e6e6cf 100%);
+  --link-color: #003399;
+  --link-radius: 8px;
+  --link-shadow:
+    inset 0 1px 0 #ffffff,
+    0 1px 2px rgba(0, 0, 0, 0.25);
+  --link-hover-bg: linear-gradient(180deg, #ffffff 0%, #d0e2ff 100%);
+  --link-border: 1px solid #5a7ba8;
+}
+
+[data-os="windows"][data-era="1"] { /* Windows 98 - softer 3D */
+  --font: "Tahoma", "MS Sans Serif", "Geneva", sans-serif;
+  --bg: #3a6ea5;
+  --card-bg: #c0c0c0;
+  --card-border: 0 solid transparent;
+  --card-radius: 0;
+  --card-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #404040,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080,
+    0 6px 16px rgba(0, 0, 0, 0.45);
+  --card-blur: 0;
+  --divider: 1px solid #808080;
+  --text: #000000;
+  --text-muted: #404040;
+  --name-weight: 700;
+  --name-size: 18px;
+  --avatar-radius: 0;
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow:
+    inset 0 0 0 2px #c0c0c0,
+    inset 0 0 0 3px #404040,
+    inset 0 0 0 4px #ffffff;
+  --link-bg: #c0c0c0;
+  --link-color: #000000;
+  --link-radius: 0;
+  --link-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #404040,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080;
+  --link-hover-bg: #c0c0c0;
+  --link-border: 0 solid transparent;
+}
+
+[data-os="windows"][data-era="0"] { /* Windows 95 - the original chunky bevels */
+  --font: "Tahoma", "MS Sans Serif", "Geneva", sans-serif;
+  --bg: #008080;
+  --card-bg: #c0c0c0;
+  --card-border: 0 solid transparent;
+  --card-radius: 0;
+  --card-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #404040,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080;
+  --card-blur: 0;
+  --divider: 1px solid #808080;
+  --text: #000000;
+  --text-muted: #404040;
+  --name-weight: 700;
+  --name-size: 18px;
+  --avatar-radius: 0;
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow:
+    inset 0 0 0 2px #c0c0c0,
+    inset 0 0 0 3px #404040,
+    inset 0 0 0 4px #ffffff;
+  --link-bg: #c0c0c0;
+  --link-color: #000000;
+  --link-radius: 0;
+  --link-shadow:
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #404040,
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080;
+  --link-hover-bg: #c0c0c0;
+  --link-border: 0 solid transparent;
+}
+
+/* Windows 95/98 hover should look "pressed" (inverted bevel) */
+[data-os="windows"][data-era="0"] .link:hover,
+[data-os="windows"][data-era="0"] .link:focus-visible,
+[data-os="windows"][data-era="1"] .link:hover,
+[data-os="windows"][data-era="1"] .link:focus-visible {
+  box-shadow:
+    inset 1px 1px 0 #404040,
+    inset -1px -1px 0 #ffffff,
+    inset 2px 2px 0 #808080,
+    inset -2px -2px 0 #dfdfdf;
+  transform: none;
+}
+
+/* =========================================================================
+   ANDROID - Cupcake → Gingerbread → ICS → KitKat → Lollipop → Nougat → 10 → 15
+   ========================================================================= */
+
+/* Era 7: Android 15 (Material You) - default */
+[data-os="android"],
+[data-os="android"][data-era="7"] {
+  --font: "Google Sans", "Roboto", "Noto Sans", system-ui, sans-serif;
+  --bg:
+    radial-gradient(900px 700px at 25% 20%, #d8a8ff 0%, transparent 55%),
+    radial-gradient(800px 700px at 80% 80%, #ffb59c 0%, transparent 55%),
+    linear-gradient(180deg, #f3e5ff 0%, #ffe5e0 100%);
+  --card-bg: #ffffff;
+  --card-border: 0 solid transparent;
+  --card-radius: 28px;
+  --card-shadow: 0 16px 40px rgba(110, 80, 160, 0.18);
+  --card-blur: 0;
+  --divider: 1px solid rgba(110, 80, 160, 0.12);
+  --text: #1d1b20;
+  --text-muted: #6a5d77;
+  --name-weight: 500;
+  --name-size: 22px;
+  --letter-spacing: 0;
+  --avatar-radius: 50%;
+  --avatar-ring: 4px solid #f3e5ff;
+  --avatar-shadow: 0 6px 18px rgba(110, 80, 160, 0.25);
+  --link-bg: #f3e5ff;
+  --link-color: #6750a4;
+  --link-radius: 22px;
+  --link-shadow: none;
+  --link-hover-bg: #e6d4ff;
+  --link-border: 0 solid transparent;
+}
+
+[data-os="android"][data-era="6"] { /* Android 10 - dark mode */
+  --font: "Google Sans", "Roboto", system-ui, sans-serif;
+  --bg: #121212;
+  --card-bg: #1f1f1f;
+  --card-border: 0 solid transparent;
+  --card-radius: 16px;
+  --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --card-blur: 0;
+  --divider: 1px solid rgba(255, 255, 255, 0.10);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --name-weight: 500;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #2c2c2c;
+  --avatar-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+  --link-bg: #2c2c2c;
+  --link-color: #8ab4f8;
+  --link-radius: 12px;
+  --link-shadow: none;
+  --link-hover-bg: #3c4043;
+  --link-border: 0 solid transparent;
+}
+
+[data-os="android"][data-era="5"] { /* Nougat - refined Material */
+  --font: "Roboto", system-ui, sans-serif;
+  --bg: #fafafa;
+  --card-bg: #ffffff;
+  --card-border: 0 solid transparent;
+  --card-radius: 4px;
+  --card-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.12);
+  --card-blur: 0;
+  --divider: 1px solid rgba(0, 0, 0, 0.08);
+  --text: #212121;
+  --text-muted: #757575;
+  --name-weight: 500;
+  --avatar-radius: 50%;
+  --avatar-ring: 0 solid transparent;
+  --avatar-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --link-bg: #ffffff;
+  --link-color: #4285f4;
+  --link-radius: 4px;
+  --link-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    0 1px 3px rgba(0, 0, 0, 0.12);
+  --link-hover-bg: #f5f5f5;
+  --link-border: 0 solid transparent;
+}
+
+[data-os="android"][data-era="4"] { /* Lollipop - Material Design debut */
+  --font: "Roboto", system-ui, sans-serif;
+  --bg: linear-gradient(135deg, #009688 0%, #00bfa5 100%);
+  --card-bg: #ffffff;
+  --card-border: 0 solid transparent;
+  --card-radius: 2px;
+  --card-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.18),
+    0 12px 28px rgba(0, 0, 0, 0.28);
+  --card-blur: 0;
+  --divider: 1px solid rgba(0, 0, 0, 0.08);
+  --text: #212121;
+  --text-muted: #757575;
+  --name-weight: 400;
+  --name-size: 24px;
+  --avatar-radius: 50%;
+  --avatar-ring: 4px solid #009688;
+  --avatar-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  --link-bg: #ff5722;
+  --link-color: #ffffff;
+  --link-radius: 50%;
+  --link-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    0 4px 8px rgba(0, 0, 0, 0.18);
+  --link-hover-bg: #f4511e;
+  --link-border: 0 solid transparent;
+}
+
+[data-os="android"][data-era="3"] { /* KitKat - Holo refined, transparent */
+  --font: "Roboto", "Droid Sans", system-ui, sans-serif;
+  --bg: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+  --card-bg: #f5f5f5;
+  --card-border: 1px solid #cccccc;
+  --card-radius: 2px;
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --card-blur: 0;
+  --divider: 1px solid #e0e0e0;
+  --text: #212121;
+  --text-muted: #757575;
+  --name-weight: 300;
+  --avatar-radius: 50%;
+  --avatar-ring: 2px solid #cccccc;
+  --avatar-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  --link-bg: #ffffff;
+  --link-color: #33b5e5;
+  --link-radius: 2px;
+  --link-shadow: none;
+  --link-hover-bg: #e6f4fa;
+  --link-border: 1px solid #cccccc;
+}
+
+[data-os="android"][data-era="2"] { /* Ice Cream Sandwich - Holo blue */
+  --font: "Roboto", "Droid Sans", system-ui, sans-serif;
+  --bg: linear-gradient(180deg, #061a2d 0%, #0e2e4f 100%);
+  --card-bg: #1a1a1a;
+  --card-border: 1px solid #33b5e5;
+  --card-radius: 2px;
+  --card-shadow:
+    0 0 24px rgba(51, 181, 229, 0.45),
+    0 12px 30px rgba(0, 0, 0, 0.7);
+  --card-blur: 0;
+  --divider: 1px solid rgba(51, 181, 229, 0.35);
+  --text: #ffffff;
+  --text-muted: #a0c4d8;
+  --name-weight: 300;
+  --name-size: 24px;
+  --letter-spacing: 0.02em;
+  --avatar-radius: 50%;
+  --avatar-ring: 2px solid #33b5e5;
+  --avatar-shadow: 0 0 16px rgba(51, 181, 229, 0.6);
+  --link-bg: transparent;
+  --link-color: #33b5e5;
+  --link-radius: 0;
+  --link-shadow: inset 0 -2px 0 #33b5e5;
+  --link-hover-bg: rgba(51, 181, 229, 0.18);
+  --link-border: 1px solid #33b5e5;
+}
+
+[data-os="android"][data-era="1"] { /* Gingerbread - dark + matrix green */
+  --font: "Droid Sans", "Roboto", monospace, sans-serif;
+  --bg: linear-gradient(180deg, #000000 0%, #0a1a0a 100%);
+  --card-bg: #1a1a1a;
+  --card-border: 1px solid #a4c639;
+  --card-radius: 4px;
+  --card-shadow: 0 8px 24px rgba(164, 198, 57, 0.3);
+  --card-blur: 0;
+  --divider: 1px solid rgba(164, 198, 57, 0.3);
+  --text: #a4c639;
+  --text-muted: rgba(164, 198, 57, 0.7);
+  --name-weight: 700;
+  --name-size: 20px;
+  --avatar-radius: 50%;
+  --avatar-ring: 2px solid #a4c639;
+  --avatar-shadow: 0 0 18px rgba(164, 198, 57, 0.5);
+  --link-bg: #0a0a0a;
+  --link-color: #a4c639;
+  --link-radius: 4px;
+  --link-shadow: inset 0 0 0 1px rgba(164, 198, 57, 0.5);
+  --link-hover-bg: rgba(164, 198, 57, 0.18);
+  --link-border: 1px solid #a4c639;
+}
+
+[data-os="android"][data-era="0"] { /* Cupcake - earliest, chunky robot green */
+  --font: "Droid Sans", "Roboto", "Verdana", sans-serif;
+  --bg: #000000;
+  --card-bg: #a4c639;
+  --card-border: 2px solid #000000;
+  --card-radius: 0;
+  --card-shadow: 6px 6px 0 #000000;
+  --card-blur: 0;
+  --divider: 2px solid #000000;
+  --text: #000000;
+  --text-muted: #2a3010;
+  --name-weight: 900;
+  --name-size: 20px;
+  --letter-spacing: 0.02em;
+  --avatar-radius: 0;
+  --avatar-ring: 2px solid #000000;
+  --avatar-shadow: 4px 4px 0 #000000;
+  --link-bg: #000000;
+  --link-color: #a4c639;
+  --link-radius: 0;
+  --link-shadow: 2px 2px 0 #6a8020;
+  --link-hover-bg: #1a1a1a;
+  --link-border: 2px solid #a4c639;
+}
+
+/* =========================================================================
+   LINUX - Ubuntu eras (Yaru → Unity → Human/brown)
+   Warty → Hardy → Lucid → Natty → Trusty → Bionic → Focal → Noble
+   ========================================================================= */
+
+/* Era 7: 24.04 Noble Numbat (latest Yaru, GNOME 46) - default */
+[data-os="linux"],
+[data-os="linux"][data-era="7"] {
+  --font: "Ubuntu", "Ubuntu Sans", "Cantarell", "Noto Sans", system-ui, sans-serif;
+  --bg:
+    radial-gradient(900px 700px at 20% 15%, #5e2750 0%, transparent 60%),
+    radial-gradient(800px 700px at 80% 85%, #e95420 0%, transparent 60%),
+    linear-gradient(180deg, #2c001e 0%, #1a0014 50%, #2c001e 100%);
+  --card-bg: rgba(38, 19, 39, 0.85);
+  --card-border: 1px solid rgba(233, 84, 32, 0.35);
+  --card-radius: 14px;
+  --card-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --card-blur: 18px;
+  --card-saturate: 140%;
+  --divider: 1px solid rgba(255, 255, 255, 0.08);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --name-weight: 500;
+  --name-size: 22px;
+  --letter-spacing: 0;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #e95420;
+  --avatar-shadow: 0 6px 18px rgba(233, 84, 32, 0.4);
+  --link-bg: rgba(233, 84, 32, 0.16);
+  --link-color: #ffffff;
+  --link-radius: 12px;
+  --link-shadow: inset 0 0 0 1px rgba(233, 84, 32, 0.35);
+  --link-hover-bg: #e95420;
+  --link-border: 1px solid transparent;
+}
+
+/* Era 6: 20.04 Focal Fossa (mature Yaru, solid grey-aubergine) */
+[data-os="linux"][data-era="6"] {
+  --font: "Ubuntu", "Cantarell", "Noto Sans", system-ui, sans-serif;
+  --bg: linear-gradient(180deg, #2c001e 0%, #3d1530 60%, #4a2240 100%);
+  --card-bg: #2c2c32;
+  --card-border: 1px solid rgba(255, 255, 255, 0.08);
+  --card-radius: 12px;
+  --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid rgba(255, 255, 255, 0.08);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --name-weight: 500;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #e95420;
+  --avatar-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --link-bg: #3a3a40;
+  --link-color: #ffffff;
+  --link-radius: 8px;
+  --link-shadow: none;
+  --link-hover-bg: #e95420;
+  --link-border: 1px solid transparent;
+}
+
+/* Era 5: 18.04 Bionic Beaver (Communitheme transition, GNOME returns) */
+[data-os="linux"][data-era="5"] {
+  --font: "Ubuntu", "Cantarell", "Noto Sans", system-ui, sans-serif;
+  --bg: linear-gradient(180deg, #2c001e 0%, #1f0014 100%);
+  --card-bg: #383838;
+  --card-border: 1px solid #1f1f1f;
+  --card-radius: 4px;
+  --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid #4a4a4a;
+  --text: #ffffff;
+  --text-muted: #b8b8b8;
+  --name-weight: 400;
+  --avatar-radius: 50%;
+  --avatar-ring: 2px solid #4a4a4a;
+  --avatar-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  --link-bg: #2a2a2a;
+  --link-color: #e95420;
+  --link-radius: 4px;
+  --link-shadow: inset 0 0 0 1px #4a4a4a;
+  --link-hover-bg: #e95420;
+  --link-border: 1px solid transparent;
+}
+
+/* Era 4: 14.04 Trusty Tahr (Unity at its peak, deep aubergine + orange) */
+[data-os="linux"][data-era="4"] {
+  --font: "Ubuntu", "Liberation Sans", sans-serif;
+  --bg:
+    radial-gradient(700px 500px at 30% 30%, #772953 0%, transparent 60%),
+    linear-gradient(180deg, #2c001e 0%, #401533 50%, #2c001e 100%);
+  --card-bg: linear-gradient(180deg, #3a1530 0%, #2c001e 100%);
+  --card-border: 1px solid rgba(233, 84, 32, 0.5);
+  --card-radius: 8px;
+  --card-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid rgba(233, 84, 32, 0.25);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --name-weight: 500;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #dd4814;
+  --avatar-shadow: 0 6px 16px rgba(221, 72, 20, 0.5);
+  --link-bg: linear-gradient(180deg, #4a1f3a 0%, #2c001e 100%);
+  --link-color: #ffffff;
+  --link-radius: 6px;
+  --link-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+  --link-hover-bg: linear-gradient(180deg, #dd4814 0%, #aa3010 100%);
+  --link-border: 1px solid #1a000f;
+}
+
+/* Era 3: 11.04 Natty Narwhal (Unity debuts, sharp orange-on-aubergine) */
+[data-os="linux"][data-era="3"] {
+  --font: "Ubuntu", "Liberation Sans", sans-serif;
+  --bg: linear-gradient(180deg, #1a0014 0%, #2c001e 50%, #401533 100%);
+  --card-bg: #2c001e;
+  --card-border: 2px solid #dd4814;
+  --card-radius: 4px;
+  --card-shadow: 0 14px 32px rgba(0, 0, 0, 0.75);
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid rgba(221, 72, 20, 0.4);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --name-weight: 700;
+  --name-size: 22px;
+  --letter-spacing: 0;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #dd4814;
+  --avatar-shadow: 0 0 0 5px #2c001e, 0 6px 14px rgba(0, 0, 0, 0.6);
+  --link-bg: #1a000f;
+  --link-color: #dd4814;
+  --link-radius: 4px;
+  --link-shadow: inset 0 0 0 2px #dd4814;
+  --link-hover-bg: #dd4814;
+  --link-border: 1px solid transparent;
+}
+
+/* Era 2: 10.04 Lucid Lynx (the brown→aubergine pivot, Light theme) */
+[data-os="linux"][data-era="2"] {
+  --font: "DejaVu Sans", "Liberation Sans", sans-serif;
+  --bg: linear-gradient(180deg, #2a1626 0%, #503550 50%, #87618c 100%);
+  --card-bg: #f5f1e3;
+  --card-border: 1px solid #b39c8c;
+  --card-radius: 6px;
+  --card-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 #ffffff;
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid #c8b8a0;
+  --text: #2a1a0a;
+  --text-muted: #6a5040;
+  --name-weight: 700;
+  --name-size: 20px;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #87618c;
+  --avatar-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --link-bg: linear-gradient(180deg, #faf6e8 0%, #e0d8c0 100%);
+  --link-color: #5a3a6a;
+  --link-radius: 6px;
+  --link-shadow:
+    inset 0 1px 0 #ffffff,
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  --link-hover-bg: linear-gradient(180deg, #ffffff 0%, #ebe2cc 100%);
+  --link-border: 1px solid #a8907a;
+}
+
+/* Era 1: 8.04 Hardy Heron (refined Human theme, brown + orange) */
+[data-os="linux"][data-era="1"] {
+  --font: "DejaVu Sans", "Bitstream Vera Sans", sans-serif;
+  --bg: linear-gradient(180deg, #4a2810 0%, #6b3a1a 50%, #8a4a20 100%);
+  --card-bg: linear-gradient(180deg, #6b3a1a 0%, #4a2810 100%);
+  --card-border: 1px solid #2a1a08;
+  --card-radius: 6px;
+  --card-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid rgba(221, 72, 20, 0.35);
+  --text: #f8e8d0;
+  --text-muted: rgba(248, 232, 208, 0.7);
+  --name-weight: 700;
+  --avatar-radius: 50%;
+  --avatar-ring: 3px solid #dd4814;
+  --avatar-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --link-bg: linear-gradient(180deg, #dd4814 0%, #8a3010 100%);
+  --link-color: #ffffff;
+  --link-radius: 6px;
+  --link-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+  --link-hover-bg: linear-gradient(180deg, #ee5a20 0%, #a04018 100%);
+  --link-border: 1px solid #2a1a08;
+}
+
+/* Era 0: 4.10 Warty Warthog (the original brown Human theme) */
+[data-os="linux"][data-era="0"] {
+  --font: "Bitstream Vera Sans", "DejaVu Sans", sans-serif;
+  --bg: linear-gradient(180deg, #5a3618 0%, #4a2a14 100%);
+  --card-bg: #d4c4a0;
+  --card-border: 2px solid #5a3618;
+  --card-radius: 0;
+  --card-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+  --card-blur: 0;
+  --card-saturate: 100%;
+  --divider: 1px solid #a89070;
+  --text: #2a1a0a;
+  --text-muted: #5a4030;
+  --name-weight: 700;
+  --name-size: 20px;
+  --letter-spacing: 0;
+  --avatar-radius: 0;
+  --avatar-ring: 2px solid #5a3618;
+  --avatar-shadow: 4px 4px 0 #5a3618;
+  --link-bg: #c9b890;
+  --link-color: #2a1a0a;
+  --link-radius: 0;
+  --link-shadow:
+    inset 1px 1px 0 #f0e6c8,
+    inset -1px -1px 0 #8a7058;
+  --link-hover-bg: #dd4814;
+  --link-border: 1px solid #5a3618;
+}
+
+/* =========================================================================
+   LAYOUT & COMPONENTS - shared by every OS / era
+   ========================================================================= */
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  letter-spacing: var(--letter-spacing, normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: color 500ms ease;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 24px 14px 170px;
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  padding: 22px 18px 18px;
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  -webkit-backdrop-filter: blur(var(--card-blur)) saturate(var(--card-saturate, 100%));
+  backdrop-filter: blur(var(--card-blur)) saturate(var(--card-saturate, 100%));
+  transition:
+    background 500ms ease,
+    border-color 500ms ease,
+    border-radius 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 500ms ease,
+    backdrop-filter 500ms ease,
+    -webkit-backdrop-filter 500ms ease;
+}
+
+.card__header {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: var(--divider);
+  transition: border-color 500ms ease;
+}
+
+.card__avatar {
   display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 14px;
+  object-fit: cover;
+  border-radius: var(--avatar-radius);
+  border: var(--avatar-ring);
+  box-shadow: var(--avatar-shadow);
+  transition:
+    border-radius 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border 500ms ease,
+    box-shadow 500ms ease,
+    width 300ms ease,
+    height 300ms ease;
+}
+
+.card__name {
+  margin: 0 0 4px;
+  font-size: var(--name-size, 22px);
+  font-weight: var(--name-weight, 600);
+  color: var(--text);
+  letter-spacing: var(--letter-spacing, -0.01em);
+  transition: color 500ms ease, font-size 500ms ease;
+}
+
+.card__location {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--text);
+  transition: color 500ms ease;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color 500ms ease;
+}
+
+.card__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  min-height: 48px;
+  background: var(--link-bg);
+  color: var(--link-color);
+  border: var(--link-border);
+  border-radius: var(--link-radius);
+  text-decoration: none;
+  font-size: 26px;
+  box-shadow: var(--link-shadow);
+  transition:
+    background 350ms ease,
+    color 350ms ease,
+    border 350ms ease,
+    border-radius 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 350ms ease,
+    transform 200ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: var(--link-hover-bg);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.link:active {
+  transform: translateY(0);
+}
+
+@media (min-width: 420px) {
+  .stage { padding: 32px 16px 170px; }
+  .card { padding: 28px 24px 22px; }
+  .card__header { padding-bottom: 18px; }
+  .card__avatar { width: 140px; height: 140px; margin-bottom: 16px; }
+  .card__location { font-size: 16px; }
+  .card__title { font-size: 14px; }
+  .card__links { gap: 10px; padding-top: 18px; }
+  .link { font-size: 30px; }
+}
+
+/* =========================================================================
+   ERA SLIDER (only shown when current OS has multiple eras)
+   ========================================================================= */
+
+.era-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+.era-bar__label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.era-bar__caption {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+
+.era-bar__name {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.era-bar__slider {
+  width: 100%;
+  max-width: 440px;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.era-bar__slider:focus { outline: none; }
+
+/* Slider track gradient varies per OS */
+.era-bar__slider::-webkit-slider-runnable-track,
+.era-bar__slider::-moz-range-track {
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg,
+    #4a90e2 0%, #888888 14%, #1a2a4a 28%, #6a4ab8 42%,
+    #2d3a52 57%, #c66e92 71%, #d36b3a 85%, #ff8fb1 100%);
+}
+
+[data-os="windows"] .era-bar__slider::-webkit-slider-runnable-track,
+[data-os="windows"] .era-bar__slider::-moz-range-track {
+  background: linear-gradient(90deg,
+    #008080 0%,    /* 95 teal */
+    #3a6ea5 14%,   /* 98 */
+    #5b9c45 28%,   /* XP grass */
+    #1f5a3e 42%,   /* Vista */
+    #2c6da3 57%,   /* 7 */
+    #00b294 71%,   /* 8 metro */
+    #0078d7 85%,   /* 10 */
+    #5b8def 100%); /* 11 mica */
+}
+
+[data-os="android"] .era-bar__slider::-webkit-slider-runnable-track,
+[data-os="android"] .era-bar__slider::-moz-range-track {
+  background: linear-gradient(90deg,
+    #a4c639 0%,    /* Cupcake */
+    #6a8020 14%,   /* Gingerbread */
+    #33b5e5 28%,   /* ICS */
+    #5dade2 42%,   /* KitKat */
+    #009688 57%,   /* Lollipop */
+    #4285f4 71%,   /* Nougat */
+    #424242 85%,   /* 10 */
+    #b69cff 100%); /* Material You */
+}
+
+[data-os="linux"] .era-bar__slider::-webkit-slider-runnable-track,
+[data-os="linux"] .era-bar__slider::-moz-range-track {
+  background: linear-gradient(90deg,
+    #5a3618 0%,    /* Warty brown */
+    #6b3a1a 14%,   /* Hardy brown */
+    #87618c 28%,   /* Lucid mauve */
+    #dd4814 42%,   /* Natty unity orange */
+    #401533 57%,   /* Trusty deep aubergine */
+    #383838 71%,   /* Bionic grey */
+    #2c2c32 85%,   /* Focal */
+    #e95420 100%); /* Noble orange */
+}
+
+.era-bar__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  cursor: grab;
+}
+
+.era-bar__slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.era-bar__slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  cursor: grab;
+}
+
+.era-bar__ticks {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  margin: 0;
+  padding: 0 11px;
+  list-style: none;
+}
+
+.era-bar__ticks li { flex: 0 0 auto; }
+
+.era-bar__tick {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 6px 4px;
+  font: inherit;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.era-bar__tick:hover,
+.era-bar__tick:focus-visible {
+  opacity: 0.95;
+  outline: none;
+}
+
+.era-bar__tick--active {
+  opacity: 1;
+  font-weight: 700;
+  transform: scale(1.15);
+}
+
+/* =========================================================================
+   TIPPY THEME (used by all OSes - keeps tooltip readable on every era)
+   ========================================================================= */
+.tippy-box[data-theme~="era"] {
+  background-color: rgba(20, 20, 30, 0.92);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-radius: 8px;
+  padding: 2px 6px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+.tippy-box[data-theme~="era"][data-placement^="top"] > .tippy-arrow::before {
+  border-top-color: rgba(20, 20, 30, 0.92);
+}
+.tippy-box[data-theme~="era"][data-placement^="bottom"] > .tippy-arrow::before {
+  border-bottom-color: rgba(20, 20, 30, 0.92);
+}
+.tippy-box[data-theme~="era"][data-placement^="left"] > .tippy-arrow::before {
+  border-left-color: rgba(20, 20, 30, 0.92);
+}
+.tippy-box[data-theme~="era"][data-placement^="right"] > .tippy-arrow::before {
+  border-right-color: rgba(20, 20, 30, 0.92);
+}
+
+/* =========================================================================
+   MOTION PREFERENCES
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card__header,
+  .card__avatar,
+  .card__name,
+  .card__location,
+  .card__title,
+  .link,
+  .era-bar__tick,
+  body {
+    transition: none !important;
+  }
 }
