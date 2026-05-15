@@ -1,104 +1,274 @@
 <!doctype html>
-
-<html>
-  <head></head>
-    <title>Ganesan Karuppaiya | Full Stack Lead Developer </title>
-    <meta   name="description" content=" I enjoys building things that live on the internet. I develop exceptional websites and web apps that provide intuitive, pixel-perfect user interfaces with ,efficient and modern backends.">
- 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="user-scalable=no, maximum-scale=1,  width=device-width, initial-scale=1" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="keywords" content="Ganesan Karuppaiya | Full Stack Lead Developer " />
-    <meta name="description" content="Ganesan Karuppaiya | Full Stack Lead Developer " />
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              clifford: '#da373d',
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="profile.css">
+    <meta name="theme-color" content="#1a1a2e" />
+
+    <title>Ganesan Karuppaiya | Full Stack Lead Developer</title>
+    <meta
+      name="description"
+      content="I enjoy building things that live on the internet. I develop exceptional websites and web apps with intuitive, pixel-perfect interfaces and modern backends."
+    />
+    <meta
+      name="keywords"
+      content="Ganesan Karuppaiya, Full Stack Lead Developer, Chennai, Web Developer"
+    />
+
+    <!-- Icons (Font Awesome 7 free) -->
+    <!-- Core MUST load before solid/brands - it defines the base .fa class behavior -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/fontawesome.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/solid.min.css" integrity="sha512-EHa6vH03/Ty92WahM0/tet1Qicl76zihDCkBnFhN3kFGQkC+mc86d7V+6y2ypiLbk3h0beZAGdUpzfMcb06cMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/brands.min.css" integrity="sha512-WxpJXPm/Is1a/dzEdhdaoajpgizHQimaLGL/QqUIAjIihlQqlPQb1V9vkGs9+VzXD7rgI6O+UsSKl4u5K36Ydw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tippy.js v6 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6.3.7/dist/tippy.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6.3.7/animations/shift-away.css"
+    />
+
+    <link rel="stylesheet" href="profile.css" />
   </head>
 
-  <body>
+  <body x-data="profile" :data-os="os" :data-era="era" x-cloak>
+    <main class="stage">
+      <article class="card" aria-label="Profile">
+        <header class="card__header">
+          <img
+            class="card__avatar"
+            src="https://avatars.githubusercontent.com/u/242106?v=4"
+            alt="Ganesan Karuppaiya"
+          />
+          <h1 class="card__name">Ganesan Karuppaiya</h1>
+          <p class="card__location">Chennai &middot; India</p>
+          <p class="card__title">Full Stack Lead Developer</p>
+        </header>
 
-    <profile></profile>
+        <nav class="card__links" aria-label="Social profiles">
+          <template x-for="link in links" :key="link.label">
+            <a
+              class="link"
+              :href="link.href"
+              :target="isExternal(link.href) ? '_blank' : null"
+              :rel="isExternal(link.href) ? 'noopener noreferrer' : null"
+              :data-tippy-content="link.label"
+              :aria-label="link.label"
+            >
+              <i :class="link.icon" aria-hidden="true"></i>
+            </a>
+          </template>
+        </nav>
+      </article>
+    </main>
 
-    <script src="profile.riot" type="riot"></script>
-    <script src="https://unpkg.com/riot@9/riot+compiler.min.js"></script>
+    <footer
+      class="era-bar"
+      x-show="hasSlider"
+      :aria-label="current.label + ' design era'"
+    >
+      <div class="era-bar__label">
+        <span class="era-bar__caption" x-text="current.label">macOS</span>
+        <span class="era-bar__name" x-text="currentName">Tahoe</span>
+      </div>
+
+      <input
+        type="range"
+        min="0"
+        :max="current.eras.length - 1"
+        step="1"
+        class="era-bar__slider"
+        x-model.number="era"
+        :aria-label="'Slide to travel through ' + current.label + ' design eras'"
+      />
+
+      <ol class="era-bar__ticks">
+        <template x-for="(year, i) in current.years" :key="i">
+          <li>
+            <button
+              type="button"
+              class="era-bar__tick"
+              :class="{ 'era-bar__tick--active': era === i }"
+              @click="era = i"
+              x-text="year"
+              :aria-label="'Jump to ' + current.label + ' ' + current.eras[i]"
+            ></button>
+          </li>
+        </template>
+      </ol>
+    </footer>
+
+    <!-- Tooltips: Popper + Tippy (sync, ready before Alpine inits) -->
+    <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"
+    ></script>
 
     <script>
-      riot.compile().then(() => {
-        riot.mount('profile', {
-          title: 'Ganesan Karuppaiya',
-          subTitle: 'Full Stack Lead Developer',
-          location: 'Chennai -India',
-          items: [
-            {
-              icon: "las la-envelope",
-              title: "Mail",
-              url: "mailto:ganesank@live.com",
+      // ----- OS detection ---------------------------------------------------
+      // Detect once at boot. Allows ?os=mac|windows|android|linux override
+      // (handy for previewing other OS designs from your own machine - there
+      // is intentionally no UI to switch, only the URL escape hatch).
+      function detectOS() {
+        var validOverrides = ['mac', 'windows', 'android', 'linux'];
+        try {
+          var override = new URLSearchParams(location.search).get('os');
+          if (override && validOverrides.indexOf(override) !== -1) {
+            return override;
+          }
+        } catch (_) {
+          /* URLSearchParams unavailable - ignore */
+        }
+
+        var ua = (navigator.userAgent || '').toLowerCase();
+        var uad = navigator.userAgentData;
+        var platform = (
+          (uad && uad.platform) ||
+          navigator.platform ||
+          ''
+        ).toLowerCase();
+
+        if (/iphone|ipad|ipod/.test(ua)) return 'mac';
+        // iPadOS reports as Macintosh + multi-touch
+        if (/macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1) {
+          return 'mac';
+        }
+        if (/android/.test(ua)) return 'android';
+        if (/cros|chromebook/.test(ua)) return 'linux';
+        if (/windows|win32|win64/.test(ua) || platform.indexOf('win') === 0) {
+          return 'windows';
+        }
+        if (
+          /mac os|macintosh|darwin/.test(ua) ||
+          platform.indexOf('mac') !== -1
+        ) {
+          return 'mac';
+        }
+        if (
+          /linux|x11|ubuntu|fedora|debian/.test(ua) ||
+          platform.indexOf('linux') !== -1
+        ) {
+          return 'linux';
+        }
+        return 'linux';
+      }
+
+      // ----- Alpine component ----------------------------------------------
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('profile', () => ({
+          os: detectOS(),
+          era: 7,
+          links: [
+            { icon: 'fa-solid fa-earth-americas', label: 'Website',     href: 'https://www.ganesan.dev/' },
+            { icon: 'fa-brands fa-linkedin',  label: 'LinkedIn',    href: 'https://linkedin.com/in/ganesankar' },
+            { icon: 'fa-brands fa-github',    label: 'GitHub',      href: 'https://github.com/ganesankar' },
+            { icon: 'fa-brands fa-facebook',  label: 'Facebook',    href: 'https://www.facebook.com/ganesankars' },
+            { icon: 'fa-brands fa-instagram', label: 'Instagram',   href: 'https://instagram.com/ganesankar' },
+            { icon: 'fa-brands fa-snapchat',  label: 'Snapchat',    href: 'https://www.snapchat.com/add/ganesankar' },
+            { icon: 'fa-brands fa-x-twitter',   label: 'Twitter / X', href: 'https://x.com/ganesankar' },
+            { icon: 'fa-brands fa-telegram',  label: 'Telegram',    href: 'https://t.me/ganesankar' },
+            { icon: 'fa-solid fa-user-group', label: 'MS Teams',    href: 'https://teams.live.com/l/invite/FBAoBY_h-bLy9xwigM?v=g1' },
+          ],
+          isExternal(href) {
+            return /^https?:\/\//i.test(href);
+          },
+          config: {
+            mac: {
+              label: 'macOS',
+              eras: [
+                'Cheetah',
+                'Tiger',
+                'Leopard',
+                'Snow Leopard',
+                'Yosemite',
+                'Big Sur',
+                'Sonoma',
+                'Tahoe'
+              ],
+              years: ["'01", "'05", "'07", "'09", "'14", "'20", "'23", "'25"]
             },
-            {
-              icon: "lab la-wordpress",
-              title: "Website",
-              url: "https://www.ganesan.dev/",
+            windows: {
+              label: 'Windows',
+              eras: [
+                '95',
+                '98',
+                'XP',
+                'Vista',
+                '7',
+                '8',
+                '10',
+                '11'
+              ],
+              years: ["'95", "'98", "'01", "'07", "'09", "'12", "'15", "'21"]
             },
-            {
-              icon: "lab la-facebook",
-              title: "Facebook",
-              url: "https://www.facebook.com/ganesankars",
+            android: {
+              label: 'Android',
+              eras: [
+                'Cupcake',
+                'Gingerbread',
+                'Ice Cream Sandwich',
+                'KitKat',
+                'Lollipop',
+                'Nougat',
+                '10',
+                '15'
+              ],
+              years: ["'09", "'10", "'11", "'13", "'14", "'16", "'19", "'24"]
             },
-            {
-              icon: "lab la-instagram",
-              title: "Instagram",
-              url: "https://instagram.com/ganesankar",
-            },
-            {
-              icon: "lab la-linkedin",
-              title: "Linkedin",
-              url: "https://linkedin.com/in/ganesankar",
-            },
-            {
-              icon: "lab  la-snapchat",
-              title: "SnapChat",
-              url: "https://www.snapchat.com/add/ganesankar",
-            }, 
-            
-            {
-              icon: "lab  la-twitter",
-              title: "Twitter",
-              url: "https://twitter.com/ganesankar",
-            },
-            {
-              icon: "lab  la-telegram",
-              title: "Telegram",
-              url: "https://t.me/ganesankar",
-            },
-            {
-              icon: "lab la-github",
-              title: "Github",
-              url: "https://github.com/ganesankar",
-            },
-            {
-              icon: "lab la-skype",
-              title: "skype",
-              url: "skype:ganesan.intech",
-            },
-          ]
-        })
-      })
+            linux: {
+              label: 'Ubuntu',
+              eras: [
+                'Warty',
+                'Hardy',
+                'Lucid',
+                'Natty',
+                'Trusty',
+                'Bionic',
+                'Focal',
+                'Noble'
+              ],
+              years: ["'04", "'08", "'10", "'11", "'14", "'18", "'20", "'24"]
+            }
+          },
+          get current() {
+            return this.config[this.os] || this.config.linux;
+          },
+          get currentName() {
+            return this.current.eras[this.era] || '';
+          },
+          get hasSlider() {
+            return this.current.eras.length > 0;
+          },
+          init() {
+            // Clamp era in case override changed eras length under us.
+            if (this.era > this.current.eras.length - 1) {
+              this.era = Math.max(0, this.current.eras.length - 1);
+            }
+            this.$nextTick(() => {
+              if (typeof window.tippy !== 'function') return;
+              window.tippy(this.$root.querySelectorAll('.link'), {
+                placement: 'top',
+                animation: 'shift-away',
+                touch: ['hold', 350],
+                delay: [120, 0],
+                offset: [0, 8],
+                theme: 'era'
+              });
+            });
+          }
+        }));
+      });
     </script>
   </body>
 </html>
